@@ -30,7 +30,7 @@
         }
     },
     "configurationArguments": {
-      "applicationExtensionKey": "7ed9e1be-42f5-48b8-a831-7e86e484ea95",
+      "applicationExtensionKey": "462a9654-a908-4fe4-b704-32772e4b62e3",
        "save": {
            "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/save",
             "verb": "POST",
