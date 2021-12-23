@@ -120,7 +120,7 @@ exports.execute = function (req, res) {
   const phone = requestBody.phone;
 
   var axios = require('axios');
-
+  const request = require('request');
   const crypto = require('crypto-js');
 
   function authorize() {
