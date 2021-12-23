@@ -10,10 +10,7 @@ define([
     var lastStepEnabled = false;
     
    var steps = [ // initialize to the same value as what's set in config.json for consistency
-        { "label": "First Step", "key": "step1" },
-        { "label": "Second Step", "key": "step2" },
-        { "label": "Third Step", "key": "step3" },
-        { "label": "Final Step", "key": "step4" }
+        { "label": "First Step", "key": "step1" }
     ];
     
     var currentStep = steps[0].key;
@@ -88,7 +85,7 @@ define([
 
     //multiwizard setup
     function onClickedNext () {
-        if (currentStep.key === 'step4') 
+        if (currentStep.key === 'step1') 
         {
             save();
         }
@@ -119,41 +116,6 @@ define([
         switch(currentStep.key) {
             case 'step1':
                 $('#step1').show();
-                connection.trigger('updateButton', {
-                    button: 'next',
-                    visible: false
-                });
-                connection.trigger('updateButton', {
-                    button: 'back',
-                    visible: false
-                });
-                break;
-            case 'step2':
-                $('#step2').show();
-                connection.trigger('updateButton', {
-                    button: 'back',
-                    visible: true
-                });
-                connection.trigger('updateButton', {
-                    button: 'next',
-                    text: 'next',
-                    visible: true
-                });
-                break;
-            case 'step3':
-                $('#step3').show();
-                connection.trigger('updateButton', {
-                    button: 'back',
-                    visible: true
-                });
-                connection.trigger('updateButton', {
-                    button: 'next',
-                    text: 'next',
-                    visible: true
-                });
-                break;
-            case 'step4':
-                $('#step4').show();
                 break;
         }
     }
@@ -181,7 +143,7 @@ define([
         console.log('To:'+to);
 
         payload['arguments'].execute.inArguments = [{
-            "accountSid": accountSid,
+            "Phone": "{{Contact.Attribute.DEName.Phone}}",
             "authToken": authToken,
             "messagingService": messagingService,
             "body": body,
