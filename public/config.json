@@ -7,7 +7,7 @@
     "type": "REST",
     "lang": {
        "en-US": {
-           "name": "Twilio SMS",
+           "name": "Test Activity",
            "description": "Send Twilio SMS with Journey Builder",
            "TwilioMessage":"test"
        }
@@ -21,7 +21,7 @@
                 }               
             ],
             "outArguments": [],
-            "url": "https://twiliosfmc.herokuapp.com/journeybuilder/execute",
+            "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/execute",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -32,7 +32,7 @@
     "configurationArguments": {
       "applicationExtensionKey": "7ed9e1be-42f5-48b8-a831-7e86e484ea95",
        "save": {
-           "url": "https://twiliosfmc.herokuapp.com/journeybuilder/save",
+           "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/save",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -40,7 +40,7 @@
             
        },
        "publish": {
-           "url": "https://twiliosfmc.herokuapp.com/journeybuilder/publish",
+           "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/publish",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -48,7 +48,7 @@
      
        },
        "validate": {
-           "url": "https://twiliosfmc.herokuapp.com/journeybuilder/validate",
+           "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/validate",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -56,7 +56,7 @@
             
        },
        "stop": {
-          "url": "https://twiliosfmc.herokuapp.com/journeybuilder/stop",
+          "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/stop",
             "verb": "POST",
             "body": "",
             "format": "json",
