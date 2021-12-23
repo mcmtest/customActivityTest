@@ -110,14 +110,59 @@ exports.execute = function (req, res) {
   console.log('To Number:' + toNumber);
 
 
-  const accountSid = requestBody.accountSid;
+ /* const accountSid = requestBody.accountSid;
   const authToken = requestBody.authToken;
   const to = requestBody.to;
   const from = requestBody.messagingService;
   const body = requestBody.body;
-  console.log('Body' + body);
+  console.log('Body' + body);*/
+
+  const phone = requestBody.phone;
 
   var axios = require('axios');
+
+  const crypto = require('crypto-js');
+
+  function authorize() {
+    var signatureArray = []
+    var timeStamp = Math.floor(Date.now()/1000)
+    var nonce = (Math.random().toString(36).substr(2))
+    var apiId = process.env.API_ID
+    var apiSecret = process.env.API_SECRET
+    signatureArray.push(timeStamp, nonce, apiId)
+    var signatureString = signatureArray.sort().join('')
+    var hmac = crypto.HmacSHA256(signatureString, apiSecret)
+    var authorization = 'gt_id=' + apiId + ',timestamp=' + timeStamp + ',nonce=' + nonce + ',signature=' + hmac
+    return authorization
+  }
+
+  var auth = authorize();
+
+  const data = JSON.stringify({
+    'phone': phone,
+    'modeId':'101888',
+    'arguments': {'orderNumber': '1'},
+  })
+
+  var options = {
+      url: 'https://tectapi.geetest.com/message',
+      method: 'POST', 
+      headers: {
+          'Authorization': auth,
+          'Content-Type': 'application/json',
+      },
+      form: data,
+  }
+
+  console.log('options: ', options);
+
+  request((options), (err, response, body) => {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log('body:', body);
+    }
+});
   
   
   //const client = require('twilio')(accountSid, authToken); 

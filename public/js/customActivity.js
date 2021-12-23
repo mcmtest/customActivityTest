@@ -135,19 +135,15 @@ define([
 
     function save() {
 
-        var accountSid = $('#accountSID').val();
+        /*var accountSid = $('#accountSID').val();
         var authToken = $('#authToken').val();
         var messagingService = $('#messagingService').val();
         var body = $('#messageBody').val();
         var to='{{Contact.Attribute.TwilioCustomActivity.Phone}}';
-        console.log('To:'+to);
+        console.log('To:'+to);*/
 
         payload['arguments'].execute.inArguments = [{
-            "Phone": "{{Contact.Attribute.DEName.Phone}}",
-            "authToken": authToken,
-            "messagingService": messagingService,
-            "body": body,
-            "to": "{{Contact.Attribute.AA_Twilio.Phone}}" //<----This should map to your data extension name and phone number column
+            "phone": "{{Contact.Attribute.OrderStatus_China_Test.shippingAddressPhoneNumber}}"
         }];
 
         payload['metaData'].isConfigured = true;
