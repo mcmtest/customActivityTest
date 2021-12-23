@@ -10,46 +10,10 @@ var request     = require('request');
 var routes      = require('./routes');
 var activity    = require('./routes/activity');
 
-var SFClient = require('./utils/sfmc-client');
-
-//var CircularJSON = require('circular-json');
-
 var app = express();
 
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.post('/message',function(req,res){
-  console.log(req);
-  console.log(req.body.From);
-  console.log(req.body.Body);
-  try
-               {
-                    SFClient.saveData(process.env.DATA_EXTENSION_EXTERNAL, [
-                      {
-                        keys: {
-                          SmsSid:req.body.SmsSid,
-                        },
-                        values: {
-                          Body: req.body.Body ,
-                          ToCountry:req.body.ToCountry,
-                          MessageSid:req.body.MessageSid,
-                          From:req.body.From,
-                          FromCity:req.body.FromCity,
-                          To:req.body.To
-                        },
-                      },
-                    ]);
-               }
-                catch(err)   
-               {
-                   console.log(err);
-               }
-  
-  //console.log("Reply Body:"+req.body);
-});
-
-
-//End of Configuration for inbound message
 
 // Configure Express
 app.set('port', process.env.PORT || 3000);

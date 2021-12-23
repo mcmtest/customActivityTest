@@ -122,37 +122,7 @@ exports.execute = function (req, res) {
 
   var axios = require('axios');
   
-  var data = JSON.stringify({
-    "channel": {
-      "id": accountSid
-    },
-    "contact": {
-      "phone_number": toNumber
-    },
-    "content": {
-      "type": "text",
-      "payload": body
-    }
-  });
-
-  var config = {
-    method: 'post',
-    url: 'https://api.amio.io/v1/messages',
-    headers: {
-      'authorization': 'Bearer VRnIkYCKVGVV52s8Gg1vEfIFotOKmPlXrWpymHl4eQ0qfAsz0mCM122vTBOXLrOQWGswtK3SNXFIWAjw6MPXgPwV86',
-      'content-type': 'application/json'
-    },
-    data: data
-  };
-
-  axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-
+  
   //const client = require('twilio')(accountSid, authToken); 
 
   /*client.messages 
