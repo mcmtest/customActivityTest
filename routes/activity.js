@@ -118,6 +118,7 @@ exports.execute = function (req, res) {
   console.log('Body' + body);*/
 
   const phone = requestBody.phone;
+  const orderID = requestBody.orderID;
 
   var axios = require('axios');
   const request = require('request');
@@ -141,7 +142,7 @@ exports.execute = function (req, res) {
   const data = JSON.stringify({
     'phone': phone,
     'modeId':'101888',
-    'arguments': {'orderNumber': '1'},
+    'arguments': {'orderNumber': orderID},
   })
 
   var options = {

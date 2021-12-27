@@ -143,7 +143,8 @@ define([
         console.log('To:'+to);*/
 
         payload['arguments'].execute.inArguments = [{
-            "phone": "{{Contact.Attribute.OrderStatus_China_Test.shippingAddressPhoneNumber}}"
+            "phone": "{{Contact.Attribute.OrderStatus_China_Test.shippingAddressPhoneNumber}}",
+            "orderID": "{{Contact.Attribute.OrderStatus_China_Test.orderID}}"
         }];
 
         payload['metaData'].isConfigured = true;
