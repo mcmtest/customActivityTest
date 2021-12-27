@@ -119,6 +119,23 @@ exports.execute = function (req, res) {
 
   const phone = requestBody.phone;
   const orderID = requestBody.orderID;
+  const email = requestBody.email;
+
+  let emailCode;
+
+  switch (email) {
+    case 'CONF':
+      emailCode = "101880";
+      break;
+    case 'SHIP':
+      emailCode = "101881";
+      break;
+    case 'REFUND':
+      emailCode = "101882";
+      break;
+    default:
+      emailCode = "101881";
+  }
 
   var axios = require('axios');
   const request = require('request');
@@ -141,7 +158,7 @@ exports.execute = function (req, res) {
 
   const data = JSON.stringify({
     'phone': phone,
-    'modeId':'101888',
+    'modeId': emailCode,
     'arguments': {'orderNumber': orderID},
   })
 

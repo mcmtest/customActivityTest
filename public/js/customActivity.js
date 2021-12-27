@@ -144,7 +144,8 @@ define([
 
         payload['arguments'].execute.inArguments = [{
             "phone": "{{Contact.Attribute.OrderStatus_China_Test.shippingAddressPhoneNumber}}",
-            "orderID": "{{Contact.Attribute.OrderStatus_China_Test.orderID}}"
+            "orderID": "{{Contact.Attribute.OrderStatus_China_Test.orderID}}",
+            "email": "{{Contact.Attribute.OrderStatus_China_Test.EmailType}}"
         }];
 
         payload['metaData'].isConfigured = true;
