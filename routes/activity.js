@@ -123,6 +123,8 @@ exports.execute = function (req, res) {
 
   let emailCode;
 
+console.log('email: --> ', email);
+
   switch (email) {
     case 'CONF':
       emailCode = "101880";
@@ -133,6 +135,21 @@ exports.execute = function (req, res) {
     case 'REFUND':
       emailCode = "101882";
       break;
+    case 'PUDELAY':
+      emailCode = "101883";
+      break;
+    case 'PUREM':
+        emailCode = "101885";
+        break;
+    case 'PUREM':
+        emailCode = "101886";
+        break;
+    case 'CNCLNOINV':
+        emailCode = "101887";
+        break;
+    case 'CNCLCUST':
+        emailCode = "101888";
+        break;
     default:
       emailCode = "101881";
   }
