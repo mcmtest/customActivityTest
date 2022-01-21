@@ -100,6 +100,7 @@ exports.execute = function (req, res) {
   console.log("2");
   console.log("1");
 
+  console.log(req.body);
   console.log('Request Body:-' + JSON.stringify(req.body));
   console.log("Executed1: " + req.body.inArguments[0]);
 

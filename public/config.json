@@ -16,8 +16,8 @@
         "execute": {
             "inArguments": [
                 {
-                  "email": "{{Contact.Attribute.AA_Twilio.Subscriberkey}}",
-                  "to": "{{Contact.Attribute.AA_Twilio.Phone}}" 
+                  "email": "",
+                  "to": "" 
                 }               
             ],
             "outArguments": [],
@@ -71,8 +71,8 @@
 	],
     "userInterfaces": {
        "configModal": {
-           "height": 520,
-           "width": 1000,
+           "height": 400,
+           "width": 700,
            "fullscreen": false
        }
     },
