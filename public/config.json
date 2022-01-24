@@ -124,7 +124,9 @@
                     }
                 ],
                 "outArguments": [
-                    
+                    {
+                        "emailType" :"{{Contact.Attribute.OrderStatus_China_Test.EmailType}}" 
+                    }
                 ]
             }
         }
