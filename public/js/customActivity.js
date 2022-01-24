@@ -5,6 +5,7 @@ define([
 ) {
     'use strict';
 
+    var eventDefinitionKey;
     var connection = new Postmonger.Session();
     var payload = {};
     var lastStepEnabled = false;
@@ -27,6 +28,12 @@ define([
     //connection.on('clickedNext', save);
     //connection.on('clickedBack', onClickedBack);
     //connection.on('gotoStep', onGotoStep);
+
+    connection.on('requestedInteraction', function(settings)
+    {
+    eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
+    console.log( "eventDefinitionKey----->" + eventDefinitionKey);
+    });
 
     function onRender() {
         // JB will respond the first time 'ready' is called with 'initActivity'
@@ -123,7 +130,10 @@ define([
         console.log('To:'+to);*/
 
         payload['arguments'].execute.inArguments = [{
-            
+            "phone": "{{Contact.Attribute.OrderStatus_China_Test.shippingAddressPhoneNumber}}",
+            "orderID": "{{Contact.Attribute.OrderStatus_China_Test.orderID}}",
+            "email": "{{Contact.Attribute.OrderStatus_China_Test.EmailType}}",
+            "EmailType" :"{{Event." + eventDefinitionKey + ".EmailType}}"
         }];
 
         payload['metaData'].isConfigured = true;
