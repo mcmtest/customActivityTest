@@ -1,6 +1,6 @@
 define([
     'postmonger'
-], function(
+], function (
     Postmonger
 ) {
     'use strict';
@@ -8,16 +8,16 @@ define([
     var connection = new Postmonger.Session();
     var payload = {};
     var lastStepEnabled = false;
-    
-   var steps = [ // initialize to the same value as what's set in config.json for consistency
+
+    var steps = [ // initialize to the same value as what's set in config.json for consistency
         { "label": "First Step", "key": "step1" }
     ];
-    
+
     var currentStep = steps[0].key;
     connection.on('clickedNext', onClickedNext);
     connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
-    
+
     $(window).ready(onRender);
 
     connection.on('initActivity', initialize);
@@ -35,43 +35,26 @@ define([
         connection.trigger('requestEndpoints');
     }
 
-    
-  function initialize(data) {
-        console.log("Initializing data data: "+ JSON.stringify(data));
+
+    function initialize(data) {
+        console.log("Initializing data data: " + JSON.stringify(data));
         if (data) {
             payload = data;
-        }    
+        }
 
         var hasInArguments = Boolean(
             payload['arguments'] &&
             payload['arguments'].execute &&
             payload['arguments'].execute.inArguments &&
             payload['arguments'].execute.inArguments.length > 0
-         );
+        );
 
         var inArguments = hasInArguments ? payload['arguments'].execute.inArguments : {};
 
-        console.log('Has In arguments: '+JSON.stringify(inArguments));
+        console.log('Has In arguments: ' + JSON.stringify(inArguments));
 
         $.each(inArguments, function (index, inArgument) {
             $.each(inArgument, function (key, val) {
-
-                if (key === 'accountSid') {
-                    $('#accountSID').val(val);
-                }
-
-                if (key === 'authToken') {
-                    $('#authToken').val(val);
-                }
-
-                if (key === 'messagingService') {
-                    $('#messagingService').val(val);
-                }
-
-                if (key === 'body') {
-                    $('#messageBody').val(val);
-                }                                                               
-
             })
         });
 
@@ -84,53 +67,50 @@ define([
     }
 
     //multiwizard setup
-    function onClickedNext () {
-        if (currentStep.key === 'step1') 
-        {
+    function onClickedNext() {
+        if (currentStep.key === 'step1') {
             save();
         }
-        else
-        {
+        else {
             connection.trigger('nextStep');
         }
     }
 
-    function onClickedBack () 
-    {
+    function onClickedBack() {
         connection.trigger('prevStep');
     }
-    function onGotoStep (step) {
+    function onGotoStep(step) {
         showStep(step);
         connection.trigger('ready');
     }
 
     function showStep(step, stepIndex) {
         if (stepIndex && !step) {
-            step = steps[stepIndex-1];
+            step = steps[stepIndex - 1];
         }
 
         currentStep = step;
 
         $('.step').hide();
 
-        switch(currentStep.key) {
+        switch (currentStep.key) {
             case 'step1':
                 $('#step1').show();
                 break;
         }
     }
 
-    
+
     //multiwizard End
-    function onGetTokens (tokens) {
+    function onGetTokens(tokens) {
         // Response: tokens = { token: <legacy token>, fuel2token: <fuel api token> }
-        console.log("Tokens function: "+JSON.stringify(tokens));
+        console.log("Tokens function: " + JSON.stringify(tokens));
         //authTokens = tokens;
     }
 
-    function onGetEndpoints (endpoints) {
+    function onGetEndpoints(endpoints) {
         // Response: endpoints = { restHost: <url> } i.e. "rest.s1.qa1.exacttarget.com"
-        console.log("Get End Points function: "+JSON.stringify(endpoints));
+        console.log("Get End Points function: " + JSON.stringify(endpoints));
     }
 
     function save() {
@@ -150,8 +130,8 @@ define([
 
         payload['metaData'].isConfigured = true;
 
-        console.log("Payload on SAVE function: "+JSON.stringify(payload));
+        console.log("Payload on SAVE function: " + JSON.stringify(payload));
         connection.trigger('updateActivity', payload);
 
-    } 
+    }
 });
