@@ -134,7 +134,7 @@ define([
             "phone": "{{Contact.Attribute.OrderStatus_China_Test.shippingAddressPhoneNumber}}",
             "orderID": "{{Contact.Attribute.OrderStatus_China_Test.orderID}}",
             "email": "{{Contact.Attribute.OrderStatus_China_Test.EmailType}}",
-            "EmailType" :"{{Event." + eventDefinitionKey + ".EmailType}}"
+            
         }];
 
         payload['metaData'].isConfigured = true;
