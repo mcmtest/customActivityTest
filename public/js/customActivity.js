@@ -25,9 +25,9 @@ define([
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
 
-    //connection.on('clickedNext', save);
-    //connection.on('clickedBack', onClickedBack);
-    //connection.on('gotoStep', onGotoStep);
+    connection.on('clickedNext', save);
+    connection.on('clickedBack', onClickedBack);
+    connection.on('gotoStep', onGotoStep);
 
     connection.on('requestedInteraction', function(settings)
     {
@@ -40,6 +40,7 @@ define([
         connection.trigger('ready');
         connection.trigger('requestTokens');
         connection.trigger('requestEndpoints');
+        connection.trigger('requestInteraction');
     }
 
 
