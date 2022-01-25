@@ -8,18 +8,12 @@
     "lang": {
        "en-US": {
            "name": "Test Activity",
-           "description": "Send Twilio SMS with Journey Builder",
-           "TwilioMessage":"test"
+           "description": ""
        }
     },
     "arguments": {
         "execute": {
             "inArguments": [
-                {
-                    "phone": "{{Contact.Attribute.OrderStatus_China_Test.shippingAddressPhoneNumber}}",
-                    "orderID": "{{Contact.Attribute.OrderStatus_China_Test.orderID}}",
-                    "email": "{{Contact.Attribute.OrderStatus_China_Test.EmailType}}"
-                }               
             ],
             "outArguments": [],
             "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/execute",
@@ -81,11 +75,6 @@
         "arguments": {
             "execute": {
                 "inArguments": [
-                    {
-                        "phone": "{{Contact.Attribute.OrderStatus_China_Test.shippingAddressPhoneNumber}}",
-                        "orderID": "{{Contact.Attribute.OrderStatus_China_Test.orderID}}",
-                        "email": "{{Contact.Attribute.OrderStatus_China_Test.EmailType}}"
-                    }               
                    ],
                 "outArguments": []
             }
