@@ -131,10 +131,10 @@ define([
         console.log('To:'+to);*/
 
         payload['arguments'].execute.inArguments = [{
-            "EmailType" :"{{Event." + eventDefinitionKey + ".EmailType}}",
+            "email" :"{{Event." + eventDefinitionKey + ".EmailType}}",
             "phone": "{{Event." + eventDefinitionKey + ".shippingAddressPhoneNumber}}",
             "orderID": "{{Event." + eventDefinitionKey + ".orderID}}",
-            "email": "{{Contact.Attribute.OrderStatus_China_Test.EmailType}}"
+            "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}"
         }];
 
         payload['metaData'].isConfigured = true;
