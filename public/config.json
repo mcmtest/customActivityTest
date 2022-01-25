@@ -8,23 +8,26 @@
     "lang": {
        "en-US": {
            "name": "Test Activity",
-           "description": ""
+           "description": "Send Twilio SMS with Journey Builder"
        }
     },
     "arguments": {
         "execute": {
             "inArguments": [
+                {
+                  "email": "",
+                  "to": "" 
+                }               
             ],
             "outArguments": [],
             "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/execute",
             "verb": "POST",
             "body": "",
             "format": "json",
-            "useJwt": false,
-            "timeout": 2000
+            "useJwt": false
         }
     },
-    "configurationArguments": {
+    "configurationArguments": { 
       "applicationExtensionKey": "462a9654-a908-4fe4-b704-32772e4b62e3",
        "save": {
            "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/save",
@@ -74,8 +77,7 @@
     "schema": {
         "arguments": {
             "execute": {
-                "inArguments": [
-                   ],
+                "inArguments": [],
                 "outArguments": []
             }
         }
