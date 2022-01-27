@@ -165,7 +165,8 @@ console.log('email: --> ', email);
   }
 
   var auth = authorize();
-
+  console.log('Email Code-'+emailCode);
+  
   const data = JSON.stringify({
     'phone': phone,
     'modeId': emailCode,
