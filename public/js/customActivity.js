@@ -134,7 +134,8 @@ define([
             "email" :"{{Event." + eventDefinitionKey + ".EmailType}}",
             "phone": "{{Event." + eventDefinitionKey + ".shippingAddressPhoneNumber}}",
             "orderID": "{{Event." + eventDefinitionKey + ".orderID}}",
-            "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}"
+            "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}",
+            "LineItemXML":"{{Event." + eventDefinitionKey + ".LineItemXML}}"
         }];
 
         payload['metaData'].isConfigured = true;
