@@ -134,7 +134,7 @@ console.log('email: --> ', email);
     case 'PUREM':
         emailCode = "101885";
         break;
-    case 'PUREM':
+    case 'PUCONF':
         emailCode = "101886";
         break;
     case 'CNCLNOINV':
