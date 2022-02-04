@@ -135,7 +135,9 @@ define([
             "phone": "{{Event." + eventDefinitionKey + ".shippingAddressPhoneNumber}}",
             "orderID": "{{Event." + eventDefinitionKey + ".orderID}}",
             "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}",
-            "LineItemXML":"{{Event." + eventDefinitionKey + ".LineItemXML}}"
+            "LineItemXML":"{{Event." + eventDefinitionKey + ".LineItemXML}}",
+            "storeName":"{{Event." + eventDefinitionKey + ".storeName}}"
+
         }];
 
         payload['metaData'].isConfigured = true;

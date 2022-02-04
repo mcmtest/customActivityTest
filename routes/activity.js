@@ -113,10 +113,12 @@ exports.execute = function (req, res) {
   const phone = requestBody.phone;
   const orderID = requestBody.orderID;
   const email = requestBody.email;
+  const storeName = requestBody.storeName;
+  console.log('storeName='+storeName);
 
   let emailCode;
 
-console.log('email: --> ', email);
+  console.log('email: --> ', email);
 
   switch (email) {
     case 'CONF':
@@ -132,17 +134,17 @@ console.log('email: --> ', email);
       emailCode = "101883";
       break;
     case 'PUREM':
-        emailCode = "101885";
-        break;
+      emailCode = "101885";
+      break;
     case 'PUCONF':
-        emailCode = "101886";
-        break;
+      emailCode = "101886";
+      break;
     case 'CNCLNOINV':
-        emailCode = "101887";
-        break;
+      emailCode = "101887";
+      break;
     case 'CNCLCUST':
-        emailCode = "101888";
-        break;
+      emailCode = "101888";
+      break;
     default:
       emailCode = "101881";
   }
@@ -153,7 +155,7 @@ console.log('email: --> ', email);
 
   function authorize() {
     var signatureArray = []
-    var timeStamp = Math.floor(Date.now()/1000)
+    var timeStamp = Math.floor(Date.now() / 1000)
     var nonce = (Math.random().toString(36).substr(2))
     var apiId = process.env.API_ID
     var apiSecret = process.env.API_SECRET
@@ -165,34 +167,37 @@ console.log('email: --> ', email);
   }
 
   var auth = authorize();
-  console.log('Email Code-'+emailCode);
-  
+  console.log('Email Code:-' + emailCode);
+
   const data = JSON.stringify({
     'phone': phone,
     'modeId': emailCode,
-    'arguments': {'orderNumber': orderID},
+    'arguments': {
+      'orderNumber': orderID,
+      'storeName':storeName
+    },
   })
 
   var options = {
-      url: 'https://tectapi.geetest.com/message',
-      method: 'POST', 
-      headers: {
-          'Authorization': auth,
-          'Content-Type': 'application/json',
-      },
-      form: data,
+    url: 'https://tectapi.geetest.com/message',
+    method: 'POST',
+    headers: {
+      'Authorization': auth,
+      'Content-Type': 'application/json',
+    },
+    form: data,
   }
 
   console.log('options: ', options);
 
   request((options), (err, response, body) => {
     if (err) {
-        console.log(err);
+      console.log(err);
     } else {
-        console.log('body:', body);
+      console.log('body:', body);
     }
-});
-// FOR TESTING
+  });
+  // FOR TESTING
   logData(req);
   res.send(200, 'Publish');
 };
