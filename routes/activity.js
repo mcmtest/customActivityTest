@@ -169,7 +169,7 @@ exports.execute = function (req, res) {
   });
 
 
-  console.log('TrakingURL:' + orderTrakingURL);
+  console.log('TrakingURL:' + orderTrakingURL+"");
   function authorize() {
     var signatureArray = []
     var timeStamp = Math.floor(Date.now() / 1000)
@@ -193,7 +193,7 @@ exports.execute = function (req, res) {
       'modeId': emailCode,
       'arguments': {
         'orderNumber': orderID,
-        'trackingNumber': "https://mcmworldwide.atlassian.net/browse/AIOPS-3689"
+        'trackingNumber': orderTrakingURL+""
       },
     })
   }
