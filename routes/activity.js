@@ -177,7 +177,9 @@ exports.execute = function (req, res) {
       console.log("Value is:" + pair[1]);
       if(pair[0]=='trackingNumbers')
       {
-        console.log('TrakingNumbers:'+pair[1]);
+        var tempTrack=pair[1].split('%');
+        console.log('TrakingNumbers:'+tempTrack[0]);
+        break;
       }
     }
 
