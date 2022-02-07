@@ -156,20 +156,19 @@ exports.execute = function (req, res) {
   const request = require('request');
   const crypto = require('crypto-js');
 
-  
+
   var xml2js = require('xml2js');
   var parser = new xml2js.Parser();
   parser.parseString(xmlLineItem, function (err, result) {
-    console.log('Error='+err);
+    console.log('Error=' + err);
     console.log('XML Result');
     console.log(result.ROOT.LineItem);
-    var gettingTrakingURL=result.ROOT.LineItem;
-    console.log('Track '+gettingTrakingURL.orderTrackingURL);
-    
+    var gettingTrakingURL = result.ROOT.LineItem[0];
+    console.log('Track ' + gettingTrakingURL.orderTrackingURL);
   });
 
 
-  console.log('TrakingURL:'+orderTrakingURL);
+  console.log('TrakingURL:' + orderTrakingURL);
   function authorize() {
     var signatureArray = []
     var timeStamp = Math.floor(Date.now() / 1000)
