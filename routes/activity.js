@@ -191,8 +191,8 @@ exports.execute = function (req, res) {
     'modeId': emailCode,
     'arguments': {
       'orderNumber': orderID,
-      'storeName': storeName
-      
+      'storeName': storeName,
+      'trackingNumber':'https://www.npmjs.com/package/libxmljs'
     },
   })
   console.log('JsonData:'+data);
