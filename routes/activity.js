@@ -114,7 +114,7 @@ exports.execute = function (req, res) {
   const orderID = requestBody.orderID;
   const email = requestBody.email;
   const storeName = requestBody.storeName;
-  const xmlLineItem=requestBody.LineItemXML;
+  const xmlLineItem = requestBody.LineItemXML;
   console.log('storeName=' + storeName);
 
   let emailCode;
@@ -151,23 +151,15 @@ exports.execute = function (req, res) {
   }
 
   let orderTrakingURL;
-  var xml2js = require('xml2js');
-  var parser = new xml2js.Parser();
-  parser.parseString(xmlLineItem, function (err, result) {
-    console.log('Error='+err);
-    console.log('XML Result');
-    console.log(result['Root']['LineItem']);
-    console.log(result['Root']['LineItem']['orderTrackingURL']);
-    //console.log('orderTrakingURL=' + result['LineItem']['orderTrackingURL']);
-    //orderTrakingURL = result['LineItem']['orderTrackingURL'];
-  });
-
- 
-
-
   var axios = require('axios');
+  var parseXML = require('xml-parse-from-string');
   const request = require('request');
   const crypto = require('crypto-js');
+
+  var doc = parseXML(xmlLineItem);
+  var doc = parseXML(str)
+  var tag = doc.getElementsByTagName('orderTrackingURL')[0]
+  console.log('orderTrackingURL:'+tag);
 
   function authorize() {
     var signatureArray = []

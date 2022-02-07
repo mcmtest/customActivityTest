@@ -45,6 +45,7 @@
     "twilio": "^3.36.0",
     "uglify-js": "^3.6.4",
     "winston": "^3.3.3",
+    "xml-parse-from-string": "^1.0.1",
     "xml2js": "^0.4.23"
   }
 }
