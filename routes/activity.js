@@ -164,7 +164,7 @@ exports.execute = function (req, res) {
     console.log('XML Result');
     console.log(result.ROOT.LineItem);
     var gettingTrakingURL=result.ROOT.LineItem;
-    console.log('Track '+gettingTrakingURL);
+    console.log('Track '+gettingTrakingURL.orderTrackingURL);
     
   });
 
