@@ -150,7 +150,7 @@ exports.execute = function (req, res) {
       emailCode = "101881";
   }
 
-  let orderTrakingURL;
+  let trackingNumber;
   var axios = require('axios');
   //var parseXML = require('xml-parse-from-string');
   const request = require('request');
@@ -158,6 +158,8 @@ exports.execute = function (req, res) {
 
 
   var xml2js = require('xml2js');
+  const url = require('url');
+
   var parser = new xml2js.Parser();
   parser.parseString(xmlLineItem, function (err, result) {
     console.log('Error=' + err);
@@ -165,11 +167,16 @@ exports.execute = function (req, res) {
     console.log(result.ROOT.LineItem);
     var gettingTrakingURL = result.ROOT.LineItem[0];
     console.log('Track ' + gettingTrakingURL.orderTrackingURL[0]);
-    orderTrakingURL = gettingTrakingURL.orderTrackingURL[0];
+    var orderTrakingURL = gettingTrakingURL.orderTrackingURL[0];
+    const current_url = new URL(orderTrakingURL);
+    console.log('current_url:'+current_url);
+    const search_params = current_url.searchParam
+    trackingNumber=search_params.get('trackingNumbers');
+    console.log('TrakingNumber:'+trackingNumber);
   });
 
 
-  console.log('TrakingURL:' + orderTrakingURL+"");
+  console.log('Traking:' + trackingNumber+"");
   function authorize() {
     var signatureArray = []
     var timeStamp = Math.floor(Date.now() / 1000)
@@ -193,7 +200,7 @@ exports.execute = function (req, res) {
       'modeId': emailCode,
       'arguments': {
         'orderNumber': orderID,
-        'trackingNumber': "https://us-devncsa.mcmworldwide.com/en_US/tracking?trackingNumbers=321321565%7Cups"
+        'trackingNumber': trackingNumber
       },
     })
   }
