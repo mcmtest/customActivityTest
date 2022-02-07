@@ -154,8 +154,9 @@ exports.execute = function (req, res) {
   var xml2js = require('xml2js');
   var parser = new xml2js.Parser();
   parser.parseString(xmlLineItem, function (err, result) {
-    console.log('orderTrakingURL=' + result['LineItem']['orderTrackingURL']);
-    orderTrakingURL = result['LineItem']['orderTrackingURL'];
+    console.log(result);
+    //console.log('orderTrakingURL=' + result['LineItem']['orderTrackingURL']);
+    //orderTrakingURL = result['LineItem']['orderTrackingURL'];
   });
 
  console.log('Final Traking Number:'+orderTrakingURL);
