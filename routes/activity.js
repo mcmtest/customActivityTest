@@ -193,7 +193,7 @@ exports.execute = function (req, res) {
       'modeId': emailCode,
       'arguments': {
         'orderNumber': orderID,
-        'trackingNumber': "https://us-devncsa.mcmworldwide.com/en_US/tracking?trackingNumbers=321321565"
+        'trackingNumber': "https://mcmworldwide.atlassian.net/browse/AIOPS-3689"
       },
     })
   }
