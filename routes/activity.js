@@ -165,7 +165,7 @@ exports.execute = function (req, res) {
     console.log(result.ROOT.LineItem);
     var gettingTrakingURL = result.ROOT.LineItem[0];
     console.log('Track ' + gettingTrakingURL.orderTrackingURL);
-    orderTrakingURL=gettingTrakingURL.orderTrackingURL;
+    orderTrakingURL = gettingTrakingURL.orderTrackingURL;
   });
 
 
@@ -185,17 +185,39 @@ exports.execute = function (req, res) {
 
   var auth = authorize();
   console.log('Email Code:-' + emailCode);
+  let data;
 
-  const data = JSON.stringify({
-    'phone': phone,
-    'modeId': emailCode,
-    'arguments': {
-      'orderNumber': orderID,
-      'storeName': storeName,
-      'trackingNumber':'https://www.npmjs.com/package/libxmljs'
-    },
-  })
-  console.log('JsonData:'+data);
+  if (emailCode == '101881') {
+    data = JSON.stringify({
+      'phone': phone,
+      'modeId': emailCode,
+      'arguments': {
+        'storeName': storeName,
+        'trackingNumber': 'https://www.npmjs.com/package/libxmljs'
+      },
+    })
+  }
+  else if (emailCode == '101885') {
+    data = JSON.stringify({
+      'phone': phone,
+      'modeId': emailCode,
+      'arguments': {
+        'orderNumber': orderID,
+        'storeName': storeName
+      },
+    })
+  }
+  else {
+    data = JSON.stringify({
+      'phone': phone,
+      'modeId': emailCode,
+      'arguments': {
+        'orderNumber': orderID
+      },
+    })
+  }
+
+  console.log('JsonData:' + data);
   var options = {
     url: 'https://tectapi.geetest.com/message',
     method: 'POST',
