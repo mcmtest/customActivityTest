@@ -192,7 +192,7 @@ exports.execute = function (req, res) {
       'phone': phone,
       'modeId': emailCode,
       'arguments': {
-        'storeName': storeName,
+        'orderNumber': orderID,
         'trackingNumber': 'https://www.npmjs.com/package/libxmljs'
       },
     })
