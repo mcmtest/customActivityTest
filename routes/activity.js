@@ -195,7 +195,7 @@ exports.execute = function (req, res) {
       'trackingNumber':orderTrakingURL
     },
   })
-
+  console.log('JsonData:'+data);
   var options = {
     url: 'https://tectapi.geetest.com/message',
     method: 'POST',
