@@ -114,7 +114,7 @@ exports.execute = function (req, res) {
   const orderID = requestBody.orderID;
   const email = requestBody.email;
   const storeName = requestBody.storeName;
-  console.log('storeName='+storeName);
+  console.log('storeName=' + storeName);
 
   let emailCode;
 
@@ -149,6 +149,17 @@ exports.execute = function (req, res) {
       emailCode = "101881";
   }
 
+  let orderTrakingURL;
+  var xml2js = require('xml2js');
+  var xmlparser = new xml2js.Parser();
+  parser.parseString(xml, function (err, result) {
+    console.log('orderTrakingURL=' + result['LineItem']['orderTrackingURL']);
+    orderTrakingURL = result['LineItem']['orderTrackingURL'];
+  });
+
+ console.log('Final Traking Number:'+orderTrakingURL);
+
+
   var axios = require('axios');
   const request = require('request');
   const crypto = require('crypto-js');
@@ -174,7 +185,7 @@ exports.execute = function (req, res) {
     'modeId': emailCode,
     'arguments': {
       'orderNumber': orderID,
-      'storeName':storeName
+      'storeName': storeName
     },
   })
 
