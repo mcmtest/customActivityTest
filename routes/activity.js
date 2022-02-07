@@ -152,7 +152,7 @@ exports.execute = function (req, res) {
 
   let orderTrakingURL;
   var axios = require('axios');
-  var parseXML = require('xml-parse-from-string');
+  //var parseXML = require('xml-parse-from-string');
   const request = require('request');
   const crypto = require('crypto-js');
 
