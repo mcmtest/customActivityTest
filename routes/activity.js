@@ -164,8 +164,8 @@ exports.execute = function (req, res) {
     console.log('XML Result');
     console.log(result.ROOT.LineItem);
     var gettingTrakingURL = result.ROOT.LineItem[0];
-    console.log('Track ' + gettingTrakingURL.orderTrackingURL);
-    orderTrakingURL = gettingTrakingURL.orderTrackingURL;
+    console.log('Track ' + gettingTrakingURL.orderTrackingURL[0]);
+    orderTrakingURL = gettingTrakingURL.orderTrackingURL[0];
   });
 
 
@@ -193,7 +193,7 @@ exports.execute = function (req, res) {
       'modeId': emailCode,
       'arguments': {
         'orderNumber': orderID,
-        'trackingNumber': 'https://www.npmjs.com/package/libxmljs'
+        'trackingNumber': orderTrakingURL
       },
     })
   }
