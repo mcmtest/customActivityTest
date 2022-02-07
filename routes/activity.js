@@ -162,8 +162,8 @@ exports.execute = function (req, res) {
   parser.parseString(xmlLineItem, function (err, result) {
     console.log('Error='+err);
     console.log('XML Result');
-    console.log(result);
-    console.log(result['Root']);
+    console.log(result.ROOT.LineItem);
+    console.log(result.ROOT);
     
   });
 
