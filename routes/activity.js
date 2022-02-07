@@ -179,6 +179,7 @@ exports.execute = function (req, res) {
       {
         var tempTrack=pair[1].split('%');
         console.log('TrakingNumbers:'+tempTrack[0]);
+        trackingNumber=tempTrack[0];
         break;
       }
     }
