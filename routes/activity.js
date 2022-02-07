@@ -158,7 +158,7 @@ exports.execute = function (req, res) {
 
 
   var xml2js = require('xml2js');
-  const url = require('url');
+  const URL = require('url');
 
   var parser = new xml2js.Parser();
   parser.parseString(xmlLineItem, function (err, result) {
