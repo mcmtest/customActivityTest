@@ -162,8 +162,10 @@ exports.execute = function (req, res) {
   parser.parseString(xmlLineItem, function (err, result) {
     console.log('Error='+err);
     console.log('XML Result');
-    console.log(result.ROOT.LineItem.orderTrackingURL);
-    orderTrakingURL=result.ROOT.LineItem.orderTrackingURL;
+    console.log(result.ROOT.LineItem);
+    var gettingTrakingURL=result.ROOT.LineItem;
+    console.log('Track '+gettingTrakingURL);
+    
   });
 
 
