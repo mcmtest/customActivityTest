@@ -165,6 +165,7 @@ exports.execute = function (req, res) {
     console.log(result.ROOT.LineItem);
     var gettingTrakingURL = result.ROOT.LineItem[0];
     console.log('Track ' + gettingTrakingURL.orderTrackingURL);
+    orderTrakingURL=gettingTrakingURL.orderTrackingURL;
   });
 
 
@@ -190,7 +191,8 @@ exports.execute = function (req, res) {
     'modeId': emailCode,
     'arguments': {
       'orderNumber': orderID,
-      'storeName': storeName
+      'storeName': storeName,
+      'trackingNumber':orderTrakingURL
     },
   })
 
