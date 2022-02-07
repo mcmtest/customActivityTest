@@ -42,6 +42,7 @@
     "querystring": "^0.2.1",
     "request": "^2.88.2",
     "require": "^2.4.20",
+    "simple-xml2json": "^1.2.3",
     "twilio": "^3.36.0",
     "uglify-js": "^3.6.4",
     "winston": "^3.3.3",
