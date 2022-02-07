@@ -167,16 +167,24 @@ exports.execute = function (req, res) {
     console.log(result.ROOT.LineItem);
     var gettingTrakingURL = result.ROOT.LineItem[0];
     console.log('Track ' + gettingTrakingURL.orderTrackingURL[0]);
-    var orderTrakingURL = gettingTrakingURL.orderTrackingURL[0];
-    const current_url = new URL(orderTrakingURL);
-    console.log('current_url:'+current_url);
-    const search_params = current_url.searchParam
-    trackingNumber=search_params.get('trackingNumbers');
-    console.log('TrakingNumber:'+trackingNumber);
+    let urlString =gettingTrakingURL.orderTrackingURL[0];
+      
+    let paramString = urlString.split('?')[1];
+    let params_arr = paramString.split('&');
+    for (let i = 0; i < params_arr.length; i++) {
+      let pair = params_arr[i].split('=');
+      console.log("Key is:" + pair[0]);
+      console.log("Value is:" + pair[1]);
+      if(pair[0]=='trackingNumbers')
+      {
+        console.log('TrakingNumbers:'+pair[1]);
+      }
+    }
+
   });
 
 
-  console.log('Traking:' + trackingNumber+"");
+  console.log('Traking:' + trackingNumber + "");
   function authorize() {
     var signatureArray = []
     var timeStamp = Math.floor(Date.now() / 1000)
