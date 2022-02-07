@@ -157,9 +157,16 @@ exports.execute = function (req, res) {
   const crypto = require('crypto-js');
 
   
-  var xml2json = require("simple-xml2json");
-  var json     = xml2json.parser(xmlLineItem);
-  console.log( json.xml )
+  var xml2js = require('xml2js');
+  var parser = new xml2js.Parser();
+  parser.parseString(xmlLineItem, function (err, result) {
+    console.log('Error='+err);
+    console.log('XML Result');
+    console.log(result);
+    console.log(result['Root']);
+    
+  });
+
 
   function authorize() {
     var signatureArray = []
