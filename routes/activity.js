@@ -162,12 +162,12 @@ exports.execute = function (req, res) {
   parser.parseString(xmlLineItem, function (err, result) {
     console.log('Error='+err);
     console.log('XML Result');
-    console.log(result.ROOT.LineItem);
-    console.log(result.ROOT);
-    
+    console.log(result.ROOT.LineItem.orderTrackingURL);
+    orderTrakingURL=result.ROOT.LineItem.orderTrackingURL;
   });
 
 
+  console.log('TrakingURL:'+orderTrakingURL);
   function authorize() {
     var signatureArray = []
     var timeStamp = Math.floor(Date.now() / 1000)
