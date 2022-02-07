@@ -193,7 +193,7 @@ exports.execute = function (req, res) {
       'modeId': emailCode,
       'arguments': {
         'orderNumber': orderID,
-        'trackingNumber': orderTrakingURL+""
+        'trackingNumber': "https://mcmworldwide.atlassian.net/browse/AIOPS-3689"
       },
     })
   }
