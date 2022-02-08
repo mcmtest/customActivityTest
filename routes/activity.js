@@ -165,25 +165,11 @@ exports.execute = function (req, res) {
     console.log('Error=' + err);
     console.log('XML Result');
     console.log(result.ROOT.LineItem);
-    var gettingTrakingURL = result.ROOT.LineItem[0];
-    console.log('Track ' + gettingTrakingURL.orderTrackingURL[0]);
+    var gettingTrakingURL = result.ROOT.LineItem[0].product;
+
+    console.log('Track ' + gettingTrakingURL[0].shipmentTrackingCode);
     let urlString =gettingTrakingURL.orderTrackingURL[0];
       
-    let paramString = urlString.split('?')[1];
-    let params_arr = paramString.split('&');
-    for (let i = 0; i < params_arr.length; i++) {
-      let pair = params_arr[i].split('=');
-      console.log("Key is:" + pair[0]);
-      console.log("Value is:" + pair[1]);
-      if(pair[0]=='trackingNumbers')
-      {
-        var tempTrack=pair[1].split('%');
-        console.log('TrakingNumbers:'+tempTrack[0]);
-        trackingNumber=tempTrack[0];
-        break;
-      }
-    }
-
   });
 
 
