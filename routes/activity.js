@@ -168,7 +168,7 @@ exports.execute = function (req, res) {
     var gettingTrakingURL = result.ROOT.LineItem[0].product;
 
     console.log('Track ' + gettingTrakingURL[0].shipmentTrackingCode);
-    let urlString =gettingTrakingURL.orderTrackingURL[0];
+    trackingNumber=gettingTrakingURL[0].shipmentTrackingCode;
       
   });
 
