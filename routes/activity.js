@@ -134,6 +134,9 @@ exports.execute = function (req, res) {
     case 'PUDELAY':
       emailCode = "101883";
       break;
+    case 'PUREADY':
+      emailCode = "101884";
+      break;
     case 'PUREM':
       emailCode = "101885";
       break;
@@ -146,8 +149,6 @@ exports.execute = function (req, res) {
     case 'CNCLCUST':
       emailCode = "101888";
       break;
-    default:
-      emailCode = "101881";
   }
 
   let trackingNumber;
@@ -168,8 +169,8 @@ exports.execute = function (req, res) {
     var gettingTrakingURL = result.ROOT.LineItem[0].product;
 
     console.log('Track ' + gettingTrakingURL[0].shipmentTrackingCode);
-    trackingNumber=gettingTrakingURL[0].shipmentTrackingCode;
-      
+    trackingNumber = gettingTrakingURL[0].shipmentTrackingCode;
+
   });
 
 
@@ -201,7 +202,7 @@ exports.execute = function (req, res) {
       },
     })
   }
-  else if (emailCode == '101885') {
+  else if (emailCode == '101885' || emailCode == '101884' ) {
     data = JSON.stringify({
       'phone': phone,
       'modeId': emailCode,
