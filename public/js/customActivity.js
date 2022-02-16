@@ -132,7 +132,7 @@ define([
 
         payload['arguments'].execute.inArguments = [{
             "email" :"{{Event." + eventDefinitionKey + ".EmailType}}",
-            "phone": "{{Event." + eventDefinitionKey + ".shippingAddressPhoneNumber}}",
+            "phone": "{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}",
             "orderID": "{{Event." + eventDefinitionKey + ".orderID}}",
             "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}",
             "LineItemXML":"{{Event." + eventDefinitionKey + ".LineItemXML}}",
