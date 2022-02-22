@@ -198,7 +198,7 @@ exports.execute = function (req, res) {
       'modeId': emailCode,
       'arguments': {
         'orderNumber': orderID,
-        'trackingNumber': trackingNumber
+        'trackingNumber': trackingNumber.toString()
       },
     })
   }
