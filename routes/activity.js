@@ -114,7 +114,7 @@ exports.execute = function (req, res) {
   const orderID = requestBody.orderID;
   const email = requestBody.email;
   const storeName = requestBody.storeName;
-  const xmlLineItem = requestBody.LineItemXML;
+  var xmlLineItem = requestBody.LineItemXML;
   xmlLineItem=xmlLineItem.replace("&lt;","<");
   xmlLineItem=xmlLineItem.replace("&gt;",">");
 
