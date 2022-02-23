@@ -114,15 +114,14 @@ exports.execute = function (req, res) {
   const orderID = requestBody.orderID;
   const email = requestBody.email;
   const storeName = requestBody.storeName;
-  let xmlLineItem = requestBody.LineItemXML;
 
-  var DomParser = require('dom-parser');
-  var parser = new DomParser();
+  let xmlLineItem1 = requestBody.LineItemXML;
+  let newstring = xmlLineItem1.replace(/&lt;/g, '<');
+  let xmlLineItem=newstring.replace(/&gt;/g, '>');
 
-  var dom = parser.parseFromString(xmlLineItem);
-  console.log(dom.body);
+  console.log('XMLTEST='+xmlLineItem);
 
-  console.log('LineItem=' + dom);
+  
 
   let emailCode;
 

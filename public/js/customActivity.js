@@ -123,9 +123,6 @@ define([
 
     function save() {
 
-        var lineItem="{{Event." + eventDefinitionKey + ".LineItemXML}}";
-        
-
        payload['arguments'].execute.inArguments = [{
             "email" :"{{Event." + eventDefinitionKey + ".EmailType}}",
             "phone": "{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}",
