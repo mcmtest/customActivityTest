@@ -114,13 +114,15 @@ exports.execute = function (req, res) {
   const orderID = requestBody.orderID;
   const email = requestBody.email;
   const storeName = requestBody.storeName;
-  let xmlLineItem= requestBody.LineItemXML;
+  let xmlLineItem = requestBody.LineItemXML;
 
-  xmlLineItem=xmlLineItem.replace("&lt;","<");
-  xmlLineItem=xmlLineItem.replace("&gt;",">");
+  var DomParser = require('dom-parser');
+  var parser = new DomParser();
+
+  var dom = parser.parseFromString(xmlLineItem);
 
 
-  console.log('LineItem=' + xmlLineItem);
+  console.log('LineItem=' + dom);
 
   let emailCode;
 
@@ -207,7 +209,7 @@ exports.execute = function (req, res) {
       },
     })
   }
-  else if (emailCode == '101885' || emailCode == '101884' ) {
+  else if (emailCode == '101885' || emailCode == '101884') {
     data = JSON.stringify({
       'phone': phone,
       'modeId': emailCode,

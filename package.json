@@ -32,6 +32,7 @@
     "bower": "^1.8.0",
     "circular-json": "^0.5.9",
     "crypto-js": "^4.1.1",
+    "dom-parser": "^0.1.6",
     "errorhandler": "^1.5.0",
     "express": "^4.17.1",
     "fuel-auth": "^3.3.0",
