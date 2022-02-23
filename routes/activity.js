@@ -120,7 +120,7 @@ exports.execute = function (req, res) {
   var parser = new DomParser();
 
   var dom = parser.parseFromString(xmlLineItem);
-
+  console.log(dom.body);
 
   console.log('LineItem=' + dom);
 
