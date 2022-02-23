@@ -110,7 +110,7 @@ exports.execute = function (req, res) {
   const toNumber = req.body.keyValue;
   console.log('To Number:' + toNumber);
 
-  const phone = requestBody.phoneNumber;
+  const phone = requestBody.phone;
   console.log('Phone:'+phone);
   const orderID = requestBody.orderID;
   const email = requestBody.email;
