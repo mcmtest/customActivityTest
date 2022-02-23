@@ -123,14 +123,7 @@ define([
 
     function save() {
 
-        /*var accountSid = $('#accountSID').val();
-        var authToken = $('#authToken').val();
-        var messagingService = $('#messagingService').val();
-        var body = $('#messageBody').val();
-        var to='{{Contact.Attribute.TwilioCustomActivity.Phone}}';
-        console.log('To:'+to);*/
-
-        payload['arguments'].execute.inArguments = [{
+       payload['arguments'].execute.inArguments = [{
             "email" :"{{Event." + eventDefinitionKey + ".EmailType}}",
             "phone": "{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}",
             "orderID": "{{Event." + eventDefinitionKey + ".orderID}}",
