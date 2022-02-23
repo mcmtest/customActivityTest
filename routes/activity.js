@@ -197,7 +197,7 @@ exports.execute = function (req, res) {
 
   var auth = authorize();
   console.log('Email Code:-' + emailCode);
-  let data;
+  const data;
 
   if (emailCode == '101881') {
     data = JSON.stringify({
@@ -207,7 +207,7 @@ exports.execute = function (req, res) {
         'orderNumber': orderID,
         'trackingNumber': (trackingNumber.toString()).trim()
       },
-    })
+    });
   }
   else if (emailCode == '101885' || emailCode == '101884') {
     data = JSON.stringify({
@@ -217,7 +217,7 @@ exports.execute = function (req, res) {
         'orderNumber': orderID,
         'storeName': storeName
       },
-    })
+    });
   }
   else {
     data = JSON.stringify({
@@ -226,7 +226,7 @@ exports.execute = function (req, res) {
       'arguments': {
         'orderNumber': orderID
       },
-    })
+    });
   }
 
   console.log('JsonData:' + data);
