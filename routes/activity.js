@@ -197,7 +197,7 @@ exports.execute = function (req, res) {
 
   var auth = authorize();
   console.log('Email Code:-' + emailCode);
-  const data;
+  var data;
 
   if (emailCode == '101881') {
     data = JSON.stringify({
