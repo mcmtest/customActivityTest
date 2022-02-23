@@ -138,7 +138,7 @@ exports.execute = function (req, res) {
     case 'REFUND':
       emailCode = "101882";
       break;
-    case 'PUDELAY':
+    /*case 'PUDELAY':
       emailCode = "101883";
       break;
     case 'PUREADY':
@@ -149,7 +149,7 @@ exports.execute = function (req, res) {
       break;
     case 'PUCONF':
       emailCode = "101886";
-      break;
+      break;*/
     case 'CNCLNOINV':
       emailCode = "101887";
       break;
