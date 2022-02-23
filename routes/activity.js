@@ -110,7 +110,7 @@ exports.execute = function (req, res) {
   const toNumber = req.body.keyValue;
   console.log('To Number:' + toNumber);
 
-  const phone = requestBody.phoneNumber;
+  const phoneNumber = requestBody.phoneNumber;
   const orderID = requestBody.orderID;
   const email = requestBody.email;
   const storeName = requestBody.storeName;
@@ -200,7 +200,7 @@ exports.execute = function (req, res) {
 
   if (emailCode == '101881') {
     data = JSON.stringify({
-      'phone': phone,
+      'phone': phoneNumber,
       'modeId': emailCode,
       'arguments': {
         'orderNumber': orderID,
@@ -210,7 +210,7 @@ exports.execute = function (req, res) {
   }
   else if (emailCode == '101885' || emailCode == '101884') {
     data = JSON.stringify({
-      'phone': phone,
+      'phone': phoneNumber,
       'modeId': emailCode,
       'arguments': {
         'orderNumber': orderID,
@@ -220,7 +220,7 @@ exports.execute = function (req, res) {
   }
   else {
     data = JSON.stringify({
-      'phone': phone,
+      'phone': phoneNumber,
       'modeId': emailCode,
       'arguments': {
         'orderNumber': orderID
