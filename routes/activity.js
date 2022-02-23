@@ -115,7 +115,11 @@ exports.execute = function (req, res) {
   const email = requestBody.email;
   const storeName = requestBody.storeName;
   const xmlLineItem = requestBody.LineItemXML;
-  console.log('storeName=' + storeName);
+  xmlLineItem=xmlLineItem.replaceAll("&lt;","<");
+  xmlLineItem=xmlLineItem.replaceAll("&gt;",">");
+
+
+  console.log('LineItem=' + xmlLineItem);
 
   let emailCode;
 
