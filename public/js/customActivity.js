@@ -62,6 +62,9 @@ define([
 
         $.each(inArguments, function (index, inArgument) {
             $.each(inArgument, function (key, val) {
+                if (key === 'smsType') {
+                    $('#smsType').val(val);
+                }
             })
         });
 
@@ -103,7 +106,8 @@ define([
         switch (currentStep.key) {
             case 'step1':
                 if ($('#smsType').val() != 'OrderStatus' || $('#smsType').val() != 'Signup' || $('#smsType').val() != 'Inventory') {
-                    $('#smsType').val() ='Your entered text is not correct!';
+                    var errorSMS='Your entered text is not correct!';
+                    $('#smsType').val(errorSMS);
                 }
                 else {
                     $('#step1').show();
@@ -135,14 +139,16 @@ define([
                 "orderID": "{{Event." + eventDefinitionKey + ".orderID}}",
                 "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}",
                 "LineItemXML": "{{Event." + eventDefinitionKey + ".LineItemXML}}",
-                "phoneNumber": "{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}"
+                "phoneNumber": "{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}",
+                "smsType":smsType
 
             }];
         }
         if (smsType == 'Signup') {
             payload['arguments'].execute.inArguments = [{
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".mobilephone}}",
-                "email": "SignUp"
+                "email": "SignUp",
+                "smsType":smsType
             }];
         }
         if (smsType == 'Inventory') {
@@ -150,7 +156,8 @@ define([
                 "productName": "{{Event." + eventDefinitionKey + ".ProductName}}",
                 "SKU": "{{Event." + eventDefinitionKey + ".SKU}}",
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".mobilephone}}",
-                "email": "Inventory"
+                "email": "Inventory",
+                "smsType":smsType
             }];
         }
 
