@@ -29,10 +29,9 @@ define([
     connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
 
-    connection.on('requestedInteraction', function(settings)
-    {
-    eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
-    console.log( "eventDefinitionKey----->" + eventDefinitionKey);
+    connection.on('requestedInteraction', function (settings) {
+        eventDefinitionKey = settings.triggers[0].metaData.eventDefinitionKey;
+        console.log("eventDefinitionKey----->" + eventDefinitionKey);
     });
 
     function onRender() {
@@ -123,15 +122,31 @@ define([
 
     function save() {
 
-       payload['arguments'].execute.inArguments = [{
-            "email" :"{{Event." + eventDefinitionKey + ".EmailType}}",
-            "orderID": "{{Event." + eventDefinitionKey + ".orderID}}",
-            "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}",
-            "LineItemXML":"{{Event." + eventDefinitionKey + ".LineItemXML}}",
-            "storeName":"{{Event." + eventDefinitionKey + ".storeName}}",
-            "phoneNumber":"{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}"
+        var smsType = $('#accountSID').val();
+        if (smsType == 'OrderStatus') {
+            payload['arguments'].execute.inArguments = [{
+                "email": "{{Event." + eventDefinitionKey + ".EmailType}}",
+                "orderID": "{{Event." + eventDefinitionKey + ".orderID}}",
+                "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}",
+                "LineItemXML": "{{Event." + eventDefinitionKey + ".LineItemXML}}",
+                "phoneNumber": "{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}"
 
-        }];
+            }];
+        }
+        if (smsType == 'Signup') {
+            payload['arguments'].execute.inArguments = [{
+                "phoneNumber": "{{Event." + eventDefinitionKey + ".mobilephone}}",
+                "email": "SignUp"
+            }];
+        }
+        if (smsType == 'Inventory') {
+            payload['arguments'].execute.inArguments = [{
+                "productName":"{{Event." + eventDefinitionKey + ".ProductName}}",
+                "SKU" :"{{Event." + eventDefinitionKey + ".SKU}}",
+                "phoneNumber": "{{Event." + eventDefinitionKey + ".mobilephone}}",
+                "email": "Inventory"
+            }];
+        }
 
         payload['metaData'].isConfigured = true;
 

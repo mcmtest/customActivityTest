@@ -107,22 +107,14 @@ exports.execute = function (req, res) {
   var requestBody = req.body.inArguments[0];
   console.log('requestBody:' + requestBody);
 
-  const toNumber = req.body.keyValue;
-  console.log('To Number:' + toNumber);
-
   const phone = requestBody.phoneNumber;
-  console.log('Phone:'+phone);
-  const orderID = requestBody.orderID;
+  console.log('Phone:' + phone);
   const email = requestBody.email;
-  const storeName = requestBody.storeName;
+  //const storeName = requestBody.storeName;
 
-  let xmlLineItem1 = requestBody.LineItemXML;
-  let newstring = xmlLineItem1.replace(/&lt;/g, '<');
-  let xmlLineItem=newstring.replace(/&gt;/g, '>');
 
-  console.log('XMLTEST='+xmlLineItem);
 
-  
+
 
   let emailCode;
 
@@ -156,6 +148,12 @@ exports.execute = function (req, res) {
     case 'CNCLCUST':
       emailCode = "101888";
       break;
+    case 'SignUp':
+      emailCode = "102044";
+      break;
+    case 'Inventory':
+      emailCode = "101889";
+      break;
   }
 
   let trackingNumber;
@@ -168,20 +166,8 @@ exports.execute = function (req, res) {
   var xml2js = require('xml2js');
   const URL = require('url');
 
-  var parser = new xml2js.Parser();
-  parser.parseString(xmlLineItem, function (err, result) {
-    console.log('Error=' + err);
-    console.log('XML Result');
-    console.log(result.ROOT.LineItem);
-    var gettingTrakingURL = result.ROOT.LineItem[0].product;
-
-    console.log('Track ' + gettingTrakingURL[0].shipmentTrackingCode);
-    trackingNumber = gettingTrakingURL[0].shipmentTrackingCode;
-
-  });
-
-
   console.log('Traking:' + trackingNumber + "");
+
   function authorize() {
     var signatureArray = []
     var timeStamp = Math.floor(Date.now() / 1000)
@@ -200,11 +186,30 @@ exports.execute = function (req, res) {
   var data;
 
   if (emailCode == '101881') {
+
+    let xmlLineItem1 = requestBody.LineItemXML;
+    let newstring = xmlLineItem1.replace(/&lt;/g, '<');
+    let xmlLineItem = newstring.replace(/&gt;/g, '>');
+    console.log('XMLTEST=' + xmlLineItem);
+
+    //Getting traking number from XML
+    var parser = new xml2js.Parser();
+    parser.parseString(xmlLineItem, function (err, result) {
+      console.log('Error=' + err);
+      console.log('XML Result');
+      console.log(result.ROOT.LineItem);
+      var gettingTrakingURL = result.ROOT.LineItem[0].product;
+
+      console.log('Track ' + gettingTrakingURL[0].shipmentTrackingCode);
+      trackingNumber = gettingTrakingURL[0].shipmentTrackingCode;
+
+    });
+
     data = JSON.stringify({
       'phone': phone,
       'modeId': emailCode,
       'arguments': {
-        'orderNumber': orderID,
+        'orderNumber': requestBody.orderID,
         'trackingNumber': (trackingNumber.toString()).trim()
       },
     });
@@ -214,8 +219,28 @@ exports.execute = function (req, res) {
       'phone': phone,
       'modeId': emailCode,
       'arguments': {
-        'orderNumber': orderID,
-        'storeName': storeName
+        'orderNumber': requestBody.orderID,
+        'storeName': requestBody.storeName
+      },
+    });
+  }
+  else if (emailCode == '102044') { //For SignUp
+    data = JSON.stringify({
+      'phone': phone,
+      'modeId': emailCode,
+      'arguments': {
+      },
+    });
+  }
+  else if (emailCode == '101889') { // For Inventory
+    var productURL = (`https://i1.adis.ws/i/mcmworldwide/${requestBody.SKU}_01?$plp-small$`).toString();
+
+    data = JSON.stringify({
+      'phone': phone,
+      'modeId': emailCode,
+      'arguments': {
+        'productName': requestBody.productName,
+        'productURL': productURL
       },
     });
   }
@@ -224,7 +249,7 @@ exports.execute = function (req, res) {
       'phone': phone,
       'modeId': emailCode,
       'arguments': {
-        'orderNumber': orderID
+        'orderNumber': requestBody.orderID
       },
     });
   }
