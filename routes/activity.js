@@ -271,10 +271,11 @@ exports.execute = function (req, res) {
     if (err) {
       console.log(err);
     } else {
+      console.log('Response:'+response.body);
       console.log('body:', body);
     }
   });
-  // FOR TESTING
+  // END Geetest SMS
   logData(req);
   res.send(200, 'Publish');
 };
