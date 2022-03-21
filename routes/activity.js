@@ -183,7 +183,7 @@ exports.execute = function (req, res) {
 
   var auth = authorize();
   console.log('Email Code:-' + emailCode);
-  const data;
+  let data;
 
   if (emailCode == '101881') {
 
