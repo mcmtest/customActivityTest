@@ -105,15 +105,8 @@ define([
 
         switch (currentStep.key) {
             case 'step1':
-                if ($('#smsType').val() != 'OrderStatus' || $('#smsType').val() != 'Signup' || $('#smsType').val() != 'Inventory') {
-                    var errorSMS='Your entered text is not correct!';
-                    $('#smsType').val(errorSMS);
-                }
-                else {
-                    $('#step1').show();
-                    break;
-                }
-
+                $('#step1').show();
+                break;
         }
     }
 
@@ -140,7 +133,7 @@ define([
                 "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}",
                 "LineItemXML": "{{Event." + eventDefinitionKey + ".LineItemXML}}",
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}",
-                "smsType":smsType
+                "smsType": smsType
 
             }];
         }
@@ -148,7 +141,7 @@ define([
             payload['arguments'].execute.inArguments = [{
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".mobilephone}}",
                 "email": "SignUp",
-                "smsType":smsType
+                "smsType": smsType
             }];
         }
         if (smsType == 'Inventory') {
@@ -157,7 +150,7 @@ define([
                 "SKU": "{{Event." + eventDefinitionKey + ".SKU}}",
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".mobilephone}}",
                 "email": "Inventory",
-                "smsType":smsType
+                "smsType": smsType
             }];
         }
 
