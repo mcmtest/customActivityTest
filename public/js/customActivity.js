@@ -102,8 +102,14 @@ define([
 
         switch (currentStep.key) {
             case 'step1':
-                $('#step1').show();
-                break;
+                if ($('#smsType').val() != 'OrderStatus' || $('#smsType').val() != 'Signup' || $('#smsType').val() != 'Inventory') {
+                    $('#smsType').val() ='Your entered text is not correct!';
+                }
+                else {
+                    $('#step1').show();
+                    break;
+                }
+
         }
     }
 
@@ -122,7 +128,7 @@ define([
 
     function save() {
 
-        var smsType = $('#accountSID').val();
+        var smsType = $('#smsType').val();
         if (smsType == 'OrderStatus') {
             payload['arguments'].execute.inArguments = [{
                 "email": "{{Event." + eventDefinitionKey + ".EmailType}}",
@@ -141,8 +147,8 @@ define([
         }
         if (smsType == 'Inventory') {
             payload['arguments'].execute.inArguments = [{
-                "productName":"{{Event." + eventDefinitionKey + ".ProductName}}",
-                "SKU" :"{{Event." + eventDefinitionKey + ".SKU}}",
+                "productName": "{{Event." + eventDefinitionKey + ".ProductName}}",
+                "SKU": "{{Event." + eventDefinitionKey + ".SKU}}",
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".mobilephone}}",
                 "email": "Inventory"
             }];
