@@ -79,7 +79,14 @@ define([
     //multiwizard setup
     function onClickedNext() {
         if (currentStep.key === 'step1') {
-            save();
+            var smsTypeCheck = $('#smsType').val();
+            if (smsTypeCheck.trim() != 'OrderStatus' || smsTypeCheck.trim() != 'Signup' || smsTypeCheck.trim() != 'Inventory') {
+                var errorText='Your entered text is not correct!'
+                $('#smsType').val(errorText);
+            }
+            else {
+                save();
+            }
         }
         else {
             connection.trigger('nextStep');
@@ -133,7 +140,7 @@ define([
                 "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}",
                 "LineItemXML": "{{Event." + eventDefinitionKey + ".LineItemXML}}",
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}",
-                "smsType": smsType
+                "smsType": smsType.trim()
 
             }];
         }
@@ -141,7 +148,7 @@ define([
             payload['arguments'].execute.inArguments = [{
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".mobilephone}}",
                 "email": "SignUp",
-                "smsType": smsType
+                "smsType": smsType.trim()
             }];
         }
         if (smsType == 'Inventory') {
@@ -150,7 +157,7 @@ define([
                 "SKU": "{{Event." + eventDefinitionKey + ".SKU}}",
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".mobilephone}}",
                 "email": "Inventory",
-                "smsType": smsType
+                "smsType": smsType.trim()
             }];
         }
 
