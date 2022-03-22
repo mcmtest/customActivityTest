@@ -79,12 +79,29 @@ define([
 
     //multiwizard setup
     function onClickedNext() {
-        if (currentStep.key === 'step2') {
+        var errorSlds = '<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert"><span class="slds-assistive-text">error</span><span class="slds-icon_container slds-icon-utility-error slds-m-right_x-small" title="Description of icon when needed"><svg class="slds-icon slds-icon_x-small" aria-hidden="true"><use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use></svg></span><h2>Your entered SMS type is not avilable or incorrect!</h2> </div>';
+
+        if ((currentStep.key) === 'step1') {
+            var smsType1 = $('#smsType').val();
+            if(smsType1.trim() !='OrderStatus' || smsType1.trim() !='Signup' || smsType1.trim() !='Inventory' || !smsType1)
+            {
+                document.getElementById("error").innerHTML= errorSlds;
+                connection.trigger('prevStep');
+            }
+            else
+            {
+                document.getElementById("error").innerHTML= "";
+                connection.trigger('nextStep');
+            }
+        }
+        else if ((currentStep.key) === 'step2') {
             save();
         }
         else {
             connection.trigger('nextStep');
         }
+
+
     }
 
     function onClickedBack() {
@@ -115,6 +132,8 @@ define([
                 break;
             case 'step2':
                 $('#step2').show();
+                var smsTypePreview = $('#smsType').val();
+                $('#selectedSMSType').val(smsTypePreview.trim());
                 break;
         }
     }
