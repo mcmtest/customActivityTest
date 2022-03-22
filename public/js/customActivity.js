@@ -65,6 +65,7 @@ define([
             $.each(inArgument, function (key, val) {
                 if (key === 'smsType') {
                     $('#smsType').val(val);
+                    document.getElementById("error").innerHTML = "";
                 }
             })
         });
@@ -81,21 +82,18 @@ define([
     function onClickedNext() {
         var errorSlds = '<div style="background-color:red" class="slds-text-heading_small">The quick brown fox jumps over the lazy dog.</div>';
 
-        if ((currentStep.key) === 'step1') {
+        if (currentStep.key === 'step1') {
             var smsType1 = $('#smsType').val();
-            if(smsType1.trim() !='OrderStatus' || smsType1.trim() !='Signup' || smsType1.trim() !='Inventory')
-            {
-                document.getElementById("error").innerHTML= errorSlds;
+            if (smsType1.trim() != 'OrderStatus' || smsType1.trim() != 'Signup' || smsType1.trim() != 'Inventory' || !smsType1) {
+                document.getElementById("error").innerHTML = errorSlds;
                 connection.trigger('prevStep');
             }
-            else
-            {
-                document.getElementById("error").innerHTML= "";
+            else {
+                document.getElementById("error").innerHTML = "";
                 connection.trigger('nextStep');
             }
         }
-
-        if ((currentStep.key) === 'step2') {
+        else if (currentStep.key === 'step2') {
             save();
         }
         else {
