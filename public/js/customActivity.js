@@ -126,8 +126,11 @@ define([
                 </div>
             </div>`;
 
-                if (textValue.trim() != 'OrderStatus' || textValue.trim() != 'Signup' || textValue.trim() != 'Inventory' || !textValue) {
+                if (textValue.trim() != 'OrderStatus' || textValue.trim() != 'Signup' || textValue.trim() != 'Inventory' || textValue.trim() == '') {
                     document.getElementById("error").innerHTML = errorMsg;
+                }
+                else {
+                    document.getElementById("error").innerHTML = '';
                 }
                 break;
         }
