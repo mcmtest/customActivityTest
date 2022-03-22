@@ -116,10 +116,28 @@ define([
             case 'step2':
                 $('#step2').show();
                 var smsTypePreview = $('#smsType').val();
-                var textValue=`<h1>${smsTypePreview.trim()}</h1>`;
-                document.getElementById("selectedSMSType").innerHTML= textValue;
-                console.log(smsTypePreview);
+                var textValue = `<h1>${smsTypePreview.trim()}</h1>`;
+                document.getElementById("selectedSMSType").innerHTML = textValue;
 
+                var errorMsg = `<div class="slds-notify_container slds-is-relative">
+                <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
+                  <span class="slds-assistive-text">error</span>
+                  <span class="slds-icon_container slds-icon-utility-error slds-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+                    <svg class="slds-icon slds-icon_small" aria-hidden="true">
+                      <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#error"></use>
+                    </svg>
+                  </span>
+                  <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small">You&#x27;ve entered incorrect SMS type which is not available.</h2>
+                    <p>Here&#x27;s some detail of
+                      Please enter 'OrderStatus' OR 'Signup' OR 'Inventory' before click .</p>
+                  </div>
+                </div>
+              </div>`;
+
+                if (textValue.trim() != 'OrderStatus' || textValue.trim() != 'OrderStatus' || textValue.trim() != 'OrderStatus' || !textValue) {
+                    document.getElementById("error").innerHTML = errorMsg;
+                }
                 break;
         }
     }
