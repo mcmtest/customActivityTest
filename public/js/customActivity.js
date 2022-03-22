@@ -80,6 +80,27 @@ define([
     //multiwizard setup
     function onClickedNext() {
         if (currentStep.key === 'step2') {
+            var smsTypeError = $('#smsType').val();
+            var errorMsg = `<div class="demo-only" style="padding:0.5rem;background:#ff1717">
+                <div class="slds-text-color_inverse">
+                <h5 class="slds-text-heading_small">You&#x27;ve entered incorrect SMS type which is not available.</h5>
+                <p>Please enter 'OrderStatus' OR 'Signup' OR 'c' before click Done.</p>
+                </div>
+            </div>`;
+
+            if (smsTypeError.trim() == 'OrderStatus' || smsTypeError.trim() == 'Signup' || smsTypeError.trim() == 'Inventory') {
+                console.log('No Error');
+
+                document.getElementById("error").innerHTML = "";
+                connection.trigger('nextStep');
+            }
+            else {
+                document.getElementById("error").innerHTML = errorMsg;
+                connection.trigger('nextStep');
+                console.log('No Error');
+            }
+        }
+        else if (currentStep.key === 'step2') {
             save();
         }
         else {
@@ -119,19 +140,6 @@ define([
                 var textValue = `<h1>${smsTypePreview.trim()}</h1>`;
                 document.getElementById("selectedSMSType").innerHTML = textValue;
 
-                var errorMsg = `<div class="demo-only" style="padding:0.5rem;background:#ff1717">
-                <div class="slds-text-color_inverse">
-                <h5 class="slds-text-heading_small">You&#x27;ve entered incorrect SMS type which is not available.</h5>
-                <p>Please enter 'OrderStatus' OR 'Signup' OR 'c' before click Done.</p>
-                </div>
-            </div>`;
-
-                if (textValue.trim() != 'OrderStatus' || textValue.trim() != 'Signup' || textValue.trim() != 'Inventory' || textValue.trim() == '') {
-                    document.getElementById("error").innerHTML = errorMsg;
-                }
-                else {
-                    document.getElementById("error").innerHTML = '';
-                }
                 break;
         }
     }
