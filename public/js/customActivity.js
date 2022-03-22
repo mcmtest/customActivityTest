@@ -79,17 +79,10 @@ define([
     //multiwizard setup
     function onClickedNext() {
         if (currentStep.key === 'step1') {
-            var smsTypeCheck = $('#smsType').val();
-            if (smsTypeCheck.trim() != 'OrderStatus' || smsTypeCheck.trim() != 'Signup' || smsTypeCheck.trim() != 'Inventory') {
-                var errorText='Your entered text is not correct!'
-                $('#smsType').val(errorText);
-            }
-            else {
-                save();
-            }
+            save();
         }
         else {
-            //connection.trigger('nextStep');
+            connection.trigger('nextStep');
         }
     }
 
@@ -98,7 +91,7 @@ define([
     }
     function onGotoStep(step) {
         showStep(step);
-        connection.trigger('ready');
+        //connection.trigger('ready');
     }
 
     function showStep(step, stepIndex) {
