@@ -11,7 +11,8 @@ define([
     var lastStepEnabled = false;
 
     var steps = [ // initialize to the same value as what's set in config.json for consistency
-        { "label": "First Step", "key": "step1" }
+        { "label": "SMS Setup", "key": "step1" },
+        { "label": "Preview", "key": "step2" }
     ];
 
     var currentStep = steps[0].key;
@@ -25,7 +26,7 @@ define([
     connection.on('requestedTokens', onGetTokens);
     connection.on('requestedEndpoints', onGetEndpoints);
 
-    connection.on('clickedNext', save);
+    //connection.on('clickedNext', save);
     connection.on('clickedBack', onClickedBack);
     connection.on('gotoStep', onGotoStep);
 
@@ -78,7 +79,7 @@ define([
 
     //multiwizard setup
     function onClickedNext() {
-        if (currentStep.key === 'step1') {
+        if (currentStep.key === 'step2') {
             save();
         }
         else {
@@ -91,7 +92,7 @@ define([
     }
     function onGotoStep(step) {
         showStep(step);
-        //connection.trigger('ready');
+        connection.trigger('ready');
     }
 
     function showStep(step, stepIndex) {
@@ -106,6 +107,14 @@ define([
         switch (currentStep.key) {
             case 'step1':
                 $('#step1').show();
+                connection.trigger('updateButton', {
+                    button: 'next',
+                    text: 'next',
+                    visible: true
+                });
+                break;
+            case 'step2':
+                $('#step2').show();
                 break;
         }
     }

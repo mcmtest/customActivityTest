@@ -1,23 +1,23 @@
 {
     "workflowApiVersion": "1.1",
     "metaData": {
-       "icon": "images/iconSmall.png",
-       "category": "message"
+        "icon": "images/iconSmall.png",
+        "category": "message"
     },
     "type": "REST",
     "lang": {
-       "en-US": {
-           "name": "Geetest SMS",
-           "description": "Send SMS using Geetest"
-       }
+        "en-US": {
+            "name": "Geetest SMS",
+            "description": "Send SMS using Geetest"
+        }
     },
     "arguments": {
         "execute": {
             "inArguments": [
                 {
-                  "email": "",
-                  "to": "" 
-                }               
+                    "email": "",
+                    "to": ""
+                }
             ],
             "outArguments": [],
             "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/execute",
@@ -27,52 +27,56 @@
             "useJwt": false
         }
     },
-    "configurationArguments": { 
-      "applicationExtensionKey": "462a9654-a908-4fe4-b704-32772e4b62e3",
-       "save": {
-           "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/save",
+    "configurationArguments": {
+        "applicationExtensionKey": "462a9654-a908-4fe4-b704-32772e4b62e3",
+        "save": {
+            "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/save",
             "verb": "POST",
             "body": "",
             "format": "json",
             "useJwt": false
-            
-       },
-       "publish": {
-           "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/publish",
+        },
+        "publish": {
+            "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/publish",
             "verb": "POST",
             "body": "",
             "format": "json",
             "useJwt": false
-     
-       },
-       "validate": {
-           "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/validate",
+        },
+        "validate": {
+            "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/validate",
             "verb": "POST",
             "body": "",
             "format": "json",
             "useJwt": false
-            
-       },
-       "stop": {
-          "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/stop",
+        },
+        "stop": {
+            "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/stop",
             "verb": "POST",
             "body": "",
             "format": "json",
             "useJwt": false
-       }
+        }
     },
-    "wizardSteps": [{
-			"label": "First Step",
-			"key": "step1"
-		}
-		
-	],
+    "wizardSteps": [
+        {
+            "label": "SMS Setup",
+            "key": "step1",
+            "active":true
+        },
+        {
+            "label": "Preview",
+            "key": "step2",
+            "active":true
+        }
+
+    ],
     "userInterfaces": {
-       "configModal": {
-           "height": 400,
-           "width": 700,
-           "fullscreen": false
-       }
+        "configModal": {
+            "height": 400,
+            "width": 700,
+            "fullscreen": false
+        }
     },
     "schema": {
         "arguments": {
