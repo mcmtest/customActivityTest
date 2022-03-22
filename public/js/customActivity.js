@@ -82,14 +82,14 @@ define([
             var smsTypeCheck = $('#smsType').val();
             if (smsTypeCheck.trim() != 'OrderStatus' || smsTypeCheck.trim() != 'Signup' || smsTypeCheck.trim() != 'Inventory') {
                 var errorText='Your entered text is not correct!'
-                $('#smsType').val(errorText);
+                $('#smsType').val(val);
             }
             else {
                 save();
             }
         }
         else {
-            connection.trigger('nextStep');
+            //connection.trigger('nextStep');
         }
     }
 
