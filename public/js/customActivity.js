@@ -84,7 +84,7 @@ define([
             var errorMsg = `<div class="demo-only" style="padding:0.5rem;background:#ff1717">
                 <div class="slds-text-color_inverse">
                 <h5 class="slds-text-heading_small">You&#x27;ve entered incorrect SMS type which is not available.</h5>
-                <p>Please enter 'OrderStatus' OR 'Signup' OR 'c' before click Done.</p>
+                <p>Please enter 'OrderStatus' OR 'Signup' OR 'Inventory' before click Done.</p>
                 </div>
             </div>`;
 
