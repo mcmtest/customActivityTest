@@ -65,7 +65,6 @@ define([
             $.each(inArgument, function (key, val) {
                 if (key === 'smsType') {
                     $('#smsType').val(val);
-                    document.getElementById("error").innerHTML = "";
                 }
             })
         });
@@ -80,27 +79,12 @@ define([
 
     //multiwizard setup
     function onClickedNext() {
-        var errorSlds = '<div style="background-color:red" class="slds-text-heading_small">The quick brown fox jumps over the lazy dog.</div>';
-
-        if (currentStep.key === 'step1') {
-            var smsType1 = $('#smsType').val();
-            if (smsType1.trim() != 'OrderStatus' || smsType1.trim() != 'Signup' || smsType1.trim() != 'Inventory' || !smsType1) {
-                document.getElementById("error").innerHTML = errorSlds;
-                connection.trigger('prevStep');
-            }
-            else {
-                document.getElementById("error").innerHTML = "";
-                connection.trigger('nextStep');
-            }
-        }
-        else if (currentStep.key === 'step2') {
+        if (currentStep.key === 'step2') {
             save();
         }
         else {
             connection.trigger('nextStep');
         }
-
-
     }
 
     function onClickedBack() {
@@ -132,7 +116,10 @@ define([
             case 'step2':
                 $('#step2').show();
                 var smsTypePreview = $('#smsType').val();
-                $('#selectedSMSType').val(smsTypePreview.trim());
+                var textValue=`<h1>${smsTypePreview.trim()}</h1>`;
+                document.getElementById("selectedSMSType").innerHTML= textValue;
+                console.log(smsTypePreview);
+
                 break;
         }
     }
