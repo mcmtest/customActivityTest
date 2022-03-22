@@ -240,7 +240,7 @@ exports.execute = function (req, res) {
       'modeId': emailCode,
       'arguments': {
         'productName': requestBody.productName,
-        'productURL': productURL
+        'productURL': productURL.toString()
       },
     });
   }
