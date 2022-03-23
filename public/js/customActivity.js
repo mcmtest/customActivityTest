@@ -168,7 +168,8 @@ define([
                 "IPAddress": "{{Event." + eventDefinitionKey + ".IPAddress}}",
                 "LineItemXML": "{{Event." + eventDefinitionKey + ".LineItemXML}}",
                 "phoneNumber": "{{Event." + eventDefinitionKey + ".billingAddressPhoneNumber}}",
-                "smsType": smsType.trim()
+                "smsType": smsType.trim(),
+                "storeName":"{{Event." + eventDefinitionKey + ".storeName}}"
 
             }];
         }
