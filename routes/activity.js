@@ -122,37 +122,37 @@ exports.execute = function (req, res) {
 
   switch (email) {
     case 'CONF':
-      emailCode = "101880";
+      emailCode = "a94a5487de7f3af75b3474dfcda6f501";  
       break;
     case 'SHIP':
-      emailCode = "101881";
+      emailCode = "5b643a7051ead66d83867a7a6f9bb591"; 
       break;
     case 'REFUND':
-      emailCode = "101882";
+      emailCode = "e7bd46aa09f2dcff5bde88a858f06061";
       break;
     case 'PUDELAY':
-      emailCode = "101883";
+      emailCode = "177556d040b33c79babe628bfa716313"; 
       break;
     case 'PUREADY':
-      emailCode = "101884";
+      emailCode = "db1ec7402fb94fa63badf951342314ec"; 
       break;
     case 'PUREM':
-      emailCode = "101885";
+      emailCode = "335e257d678f80164423e07fa866da76"; 
       break;
     case 'PUCONF':
-      emailCode = "101886";
+      emailCode = "371613ce6604752a237c6c8fd2cf150e"; 
       break;
     case 'CNCLNOINV':
-      emailCode = "101887";
+      emailCode = "554e9e79a0aa504f8dafdc95105f9553"; 
       break;
     case 'CNCLCUST':
-      emailCode = "101888";
+      emailCode = "f6f3b77782c267d4da70bddab82ba0f7"; 
       break;
     case 'SignUp':
-      emailCode = "102044";
+      emailCode = "01e9626fcdb86e1c8274197ec35b87f3"; 
       break;
     case 'Inventory':
-      emailCode = "101889";
+      emailCode = "217becea0a0a85f1fe8487dc904fbb10"; 
       break;
   }
 
@@ -185,7 +185,8 @@ exports.execute = function (req, res) {
   console.log('Email Code:-' + emailCode);
   let data;
 
-  if (emailCode == '101881') {
+  
+  if (emailCode == '5b643a7051ead66d83867a7a6f9bb591') { //SHIP    
 
     let xmlLineItem1 = requestBody.LineItemXML;
     let newstring = xmlLineItem1.replace(/&lt;/g, '<');
@@ -214,7 +215,7 @@ exports.execute = function (req, res) {
       },
     });
   }
-  else if (emailCode == '101885' || emailCode == '101884') {
+  else if (emailCode == '335e257d678f80164423e07fa866da76' || emailCode == 'db1ec7402fb94fa63badf951342314ec') {   //PUREADY & PUREM
     data = JSON.stringify({
       'phone': phone,
       'modeId': emailCode,
@@ -224,7 +225,7 @@ exports.execute = function (req, res) {
       },
     });
   }
-  else if (emailCode == '102044') { //For SignUp
+  else if (emailCode == '01e9626fcdb86e1c8274197ec35b87f3') { //For SignUp
     data = JSON.stringify({
       'phone': phone,
       'modeId': emailCode,
@@ -232,7 +233,7 @@ exports.execute = function (req, res) {
       },
     });
   }
-  else if (emailCode == '101889') { // For Inventory
+  else if (emailCode == '217becea0a0a85f1fe8487dc904fbb10') { // For Inventory
     var productURL = (`https://cn.mcmworldwide.com/zh_CN/${requestBody.SKU}.html`).toString();
 
     data = JSON.stringify({
@@ -256,7 +257,7 @@ exports.execute = function (req, res) {
 
   console.log('JsonData:' + data);
   var options = {
-    url: 'https://tectapi.geetest.com/message',
+    url: 'https://tectapi.geetest.com/v2/message',
     method: 'POST',
     headers: {
       'Authorization': auth,
