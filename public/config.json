@@ -7,7 +7,7 @@
     "type": "REST",
     "lang": {
         "en-US": {
-            "name": "Geetest SMS",
+            "name": "GEETEST",
             "description": "Send SMS using Geetest"
         }
     },
@@ -28,7 +28,7 @@
         }
     },
     "configurationArguments": {
-        "applicationExtensionKey": "462a9654-a908-4fe4-b704-32772e4b62e3",
+        "applicationExtensionKey": "0fb9b796-3b7f-4006-9d42-049664b60cbb",
         "save": {
             "url": "https://mcm-sms-test.herokuapp.com/journeybuilder/save",
             "verb": "POST",
